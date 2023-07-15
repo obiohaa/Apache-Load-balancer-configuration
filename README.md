@@ -81,4 +81,25 @@ Open two ssh/Putty consoles for both Web Servers and run following command: You 
 
 `sudo tail -f /var/log/httpd/access_log`
 
+![access log](./images/access%20logs.PNG)
+
+Try to refresh your browser page http://<Load-Balancer-Public-IP-Address-or-Public-DNS-Name>/index.php several times and make sure that both servers receive HTTP GET requests from your LB – new records must appear in each server’s log file.
+
+Optionally we can configure an internal DNS. What we can do, is to configure local domain name resolution. The easiest way is to use /etc/hosts file, although this approach is not very scalable, but it is very easy to configure and shows the concept well.
+
+`sudo vi /etc/host`
+
+``````
+#Open this file on your LB server
+
+sudo vi /etc/hosts
+
+#Add 2 records into this file with Local IP address and arbitrary name for both of your Web Servers
+
+<WebServer1-Private-IP-Address> Web1
+<WebServer2-Private-IP-Address> Web2
+``````
+
+Now you can update your LB config file with those names instead of IP addresses.
+
 
