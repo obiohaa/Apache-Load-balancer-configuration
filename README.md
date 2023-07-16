@@ -102,4 +102,13 @@ sudo vi /etc/hosts
 
 Now you can update your LB config file with those names instead of IP addresses.
 
+`sudo vi /etc/apache2/sites-available/000-default.conf`
 
+``````
+BalancerMember http://Webserver1:80 loadfactor=5 timeout=1
+BalancerMember http://Webserver2:80 loadfactor=5 timeout=1
+``````
+
+You can try to curl your Web Servers from LB locally curl http://Webserver1 or curl http://Webserver2
+
+![](./images/dns%20name.PNG)
